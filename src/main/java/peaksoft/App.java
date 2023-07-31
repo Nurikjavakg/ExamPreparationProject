@@ -62,9 +62,15 @@ public class App {
       //    bookService.getBookAndPublisherByBookId(4L);
 /**reader*/
 
-        Reader reader = new Reader("James Arthur",34,"james@gmail.com");
-        reader.setBook(new Book("Ne sdavaisa","kg",LocalDate.of(2018,3,1), BigDecimal.valueOf(5000), Genre.DETECTIVE));
-        readerService.saveReader(reader);
+//        Reader reader = new Reader("James Arthur",34,"james@gmail.com");
+//        reader.setBook(new Book("Ne sdavaisa","kg",LocalDate.of(2018,3,1), BigDecimal.valueOf(5000), Genre.DETECTIVE));
+//        readerService.saveReader(reader);
+      //
+        //
+        //
+        //  System.out.println(readerService.getReaderByBookId(1L));
+        bookService.deleteBookByAuthorId(8L);
+        System.out.println("hello world");
 
     }
 }

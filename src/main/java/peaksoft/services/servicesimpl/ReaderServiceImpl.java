@@ -1,9 +1,12 @@
 package peaksoft.services.servicesimpl;
 
+import peaksoft.entities.Book;
 import peaksoft.entities.Reader;
 import peaksoft.repastitories.ReaderRepo;
 import peaksoft.repastitories.repasitoriesimpl.ReaderRepoImpl;
 import peaksoft.services.ReaderService;
+
+import java.util.Map;
 
 public class ReaderServiceImpl implements ReaderService {
     ReaderRepo readerRepo = new ReaderRepoImpl();
@@ -19,9 +22,10 @@ public class ReaderServiceImpl implements ReaderService {
     }
 
     @Override
-    public Reader getReaderByBookId() {
-        return null;
+    public Map<Reader, Book> getReaderByBookId(Long id) {
+        return readerRepo.getReaderByBookId(id);
     }
+
 
     @Override
     public String deleteReaderById() {

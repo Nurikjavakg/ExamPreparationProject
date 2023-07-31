@@ -28,17 +28,16 @@ public class ReaderRepoImpl implements ReaderRepo {
     }
 
     @Override
-    public Map<Reader,Book> getReaderByBookId(Book id) {
+    public Map<Reader,Book> getReaderByBookId(Long id) {
         EntityManager entityManager1 = entityManagerFactory.createEntityManager();
         entityManager1.getTransaction().begin();
-        Map<Reader,Book>map = new HashMap<>();
         Reader reader = entityManager1.find(Reader.class,id);
-
-        reader.getBook();
-
+        Book book = reader.getBook();
+        Map<Reader,Book>map = new HashMap<>();
+        map.put(reader,book);
         entityManager1.getTransaction().commit();
         entityManager1.close();
-        return null;
+        return map;
     }
 
     @Override
