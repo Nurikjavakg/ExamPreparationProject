@@ -10,8 +10,8 @@ public class BookServiceImpl implements BookService {
     BookRepo bookRepo = new BookRepoImpl();
 
     @Override
-    public Book saveBook(Book book) {
-        return bookRepo.saveBook(book);
+    public Book saveBook(Book book,Long authorId) {
+        return bookRepo.saveBook(book,authorId);
 
     }
 

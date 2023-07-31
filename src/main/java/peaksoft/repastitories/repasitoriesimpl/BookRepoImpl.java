@@ -14,10 +14,12 @@ public class BookRepoImpl implements BookRepo {
     private final EntityManagerFactory entityManagerFactory = DataBaseConfig.getEntityManager();
 
     @Override
-    public Book saveBook(Book book) {
+    public Book saveBook(Book book,Long authorId) {
         EntityManager entityManager1 = entityManagerFactory.createEntityManager();
         entityManager1.getTransaction().begin();
+        Author author = entityManager1.find(Author.class,authorId);
         entityManager1.persist(book);
+        book.setAuthor(author);
         entityManager1.getTransaction().commit();
         entityManager1.close();
         return book;
@@ -29,7 +31,6 @@ public class BookRepoImpl implements BookRepo {
         entityManager1.getTransaction().begin();
         Book book = entityManager1.find(Book.class, bookId);
         book.setAuthor(author);
-        entityManager1.persist(book);
         entityManager1.getTransaction().commit();
         entityManager1.close();
 
@@ -39,21 +40,18 @@ public class BookRepoImpl implements BookRepo {
     @Override
     public void getBookAndPublisherByBookId(Long bookId) {
         EntityManager entityManager1 = entityManagerFactory.createEntityManager();
-
         entityManager1.getTransaction().begin();
-//        Book book1 = entityManager1.find(Book.class, bookId);
-        Book book = entityManager1.createQuery("select b from Book b join Publisher p on b.publisher_id=p.id where b.id=:bookId", Book.class).setParameter("bookId", bookId).getSingleResult();
-//        List<Publisher> publishers = entityManager1.createQuery("SELECT p FROM Publisher p JOIN FETCH p.bookList WHERE p.id = :publisherId", Publisher.class)
-//                .setParameter("publisherId", bookId).getResultList();
-     //   System.out.println(book1);
+        Book book = entityManager1.createQuery("select b from Book b join Publisher p on b.publisher.id = p.id where b.id=:bookId", Book.class).setParameter("bookId", bookId).getSingleResult();
+        System.out.println(book);
+        System.out.println(book.getPublisher());
         entityManager1.getTransaction().commit();
 
         entityManager1.close();
-        //  System.out.println(publishers);
     }
 
     @Override
     public String deleteBookByAuthorId() {
+
         return null;
     }
 }

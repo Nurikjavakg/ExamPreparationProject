@@ -1,16 +1,14 @@
 package peaksoft.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "readers")
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Reader {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
@@ -24,9 +22,15 @@ public class Reader {
     private String name;
     private int age;
     private String email;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "book_id")
     private Book book;
+
+    public Reader(String name, int age, String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
 
     @Override
     public String toString() {
