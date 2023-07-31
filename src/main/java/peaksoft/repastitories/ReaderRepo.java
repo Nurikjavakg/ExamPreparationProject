@@ -9,7 +9,7 @@ public interface ReaderRepo {
 
  Reader saveReader(Reader reader);
  String updateReader();
- Map<Reader,Book> getReaderByBookId(Book id);
+ Map<Reader,Book> getReaderByBookId(Long id);
  String deleteReaderById();
  Reader getReadersByAuthorId();
 

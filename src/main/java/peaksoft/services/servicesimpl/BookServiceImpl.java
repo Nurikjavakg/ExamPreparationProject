@@ -27,7 +27,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public String deleteBookByAuthorId() {
-        return null;
+    public String deleteBookByAuthorId(Long authorId) {
+        bookRepo.deleteBookByAuthorId(authorId);
+        return authorId+" is deleted!";
     }
 }
