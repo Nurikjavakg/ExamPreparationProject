@@ -70,7 +70,8 @@ public class App {
         //
         //  System.out.println(readerService.getReaderByBookId(1L));
         bookService.deleteBookByAuthorId(8L);
-        System.out.println("hello world");
+        System.out.println("Hello world");
+
 
     }
 }
